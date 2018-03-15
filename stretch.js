@@ -4,7 +4,12 @@ var wrapLog = function (callback, name) {
     for (i = 0; i < arguments.length; i++){
       argumentsArray.push(arguments[i])
     }
-    return callback.apply(null, argumentsArray)
+    var str = ''
+    for (arg in argumentsArray){
+      str += argumentsArray[arg]
+      str += ','
+    }
+    return console.log( name + '(' + str.slice(0,str.length-1) + ') => '+ callback.apply(null, argumentsArray))
   }
 };
 
@@ -23,3 +28,4 @@ var volume = function (x, y, z) {
 
  logVolume(5, 3, 2); // volume(5, 3, 2) => 30
  logVolume(3, 2, 4); // volume(3, 2, 4) => 24
+
